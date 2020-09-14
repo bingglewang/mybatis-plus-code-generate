@@ -38,8 +38,10 @@ public class EntityInfoUtil {
 		Connection con = null;
 		PreparedStatement pstemt = null;
 		ResultSet rs = null;
-		//sql
-		String sql="select column_name,data_type,column_comment from information_schema.columns where table_schema='"+bi.getDatabase()+"' and table_name='"+bi.getTable()+"'";
+		//sql(mysql)
+		//String sql="select column_name,data_type,'' column_comment from information_schema.columns where table_catalog='"+bi.getDatabase()+"' and table_name='"+bi.getTable()+"'";
+		//postgresql
+		String sql = "SELECT a.attname as column_name,format_type(a.atttypid,a.atttypmod) as data_type,col_description(a.attrelid,a.attnum) as column_comment FROM pg_class as c,pg_attribute as a where c.relname = '"+bi.getTable()+"' and a.attrelid = c.oid and a.attnum>0";
 		try {
 			con = DriverManager.getConnection(bi.getDbUrl(), bi.getDbName(), bi.getDbPassword());
 			//获取全部表名字
