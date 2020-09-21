@@ -57,11 +57,10 @@ public class ${entityName}Controller {
        public CommonResult getById(@PathVariable("id")Long id){
             ${entityName} obj=baseService.getById(id);
             if (null!=obj ) {
-                CommonResult.success(obj);
+                return CommonResult.success(obj);
             }else {
-                CommonResult.failed("查询对象不存在！");
+                return CommonResult.failed("查询对象不存在！");
             }
-            return CommonResult.failed();
         }
 
         /**
@@ -81,14 +80,13 @@ public class ${entityName}Controller {
             if (null!=obj) {
                 boolean rsg = baseService.removeById(id);
             if (rsg) {
-                CommonResult.success("删除成功");
+                return CommonResult.success("删除成功");
             }else {
-                CommonResult.failed("删除失败！");
+                return CommonResult.failed("删除失败！");
             }
             }else {
-                CommonResult.failed("删除的对象不存在！");
+                return CommonResult.failed("删除的对象不存在！");
             }
-            return CommonResult.failed();
         }
 
 
@@ -108,14 +106,13 @@ public class ${entityName}Controller {
            if (null!=entity) {
                 boolean rsg = baseService.save(entity);
            if (rsg) {
-                CommonResult.success("添加成功");
+                return CommonResult.success("添加成功");
            }else {
-                CommonResult.failed("添加失败！");
+                return CommonResult.failed("添加失败！");
            }
            }else {
-                CommonResult.failed("请传入正确参数！");
+                return CommonResult.failed("请传入正确参数！");
            }
-           return CommonResult.failed();
       }
 
 
@@ -135,14 +132,13 @@ public class ${entityName}Controller {
           if (null!=entity) {
                 boolean rsg = baseService.updateById(entity);
           if (rsg) {
-                CommonResult.success("修改成功");
+                return CommonResult.success("修改成功");
           }else {
-                CommonResult.failed("修改失败！");
+                return CommonResult.failed("修改失败！");
           }
           }else {
-                CommonResult.failed("请传入正确参数！");
+                return CommonResult.failed("请传入正确参数！");
           }
-          return CommonResult.failed();
       }
 
 
