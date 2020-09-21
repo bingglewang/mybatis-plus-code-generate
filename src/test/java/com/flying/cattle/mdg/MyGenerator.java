@@ -15,23 +15,23 @@ import com.gitee.flying.cattle.mdg.util.MySqlToJavaUtil;
  */
 public class MyGenerator {
     // 基础信息：项目名、作者、版本
-    public static final String PROJECT = "up-mall板根商城";
+    public static final String PROJECT = "海上水文气象";
     public static final String AUTHOR = "binggleWang";
     public static final String VERSION = "V1.0";
     // 数据库连接信息：连接URL、用户名、秘密、数据库名
-    public static final String URL = "jdbc:mysql://cdb-puhlb3l3.gz.tencentcdb.com:10076/up_mall?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useInformationSchema=true";
-    public static final String NAME = "root";
-    public static final String PASS = "adminfeng5148@";
-    public static final String DATABASE = "up_mall";
+    public static final String URL = "jdbc:postgresql://localhost:5432/martitime-hydrometeorology?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useInformationSchema=true";
+    public static final String NAME = "postgres";
+    public static final String PASS = "12345a";
+    public static final String DATABASE = "martitime-hydrometeorology";
     // 类信息：类名、对象名（一般是【类名】的首字母小些）、类说明、时间
     //public static final String CLASSNAME = "friend";
-    public static final String TABLE = "shopping_cart";
-    public static final String CLASSCOMMENT = "用户和代理商";
+    public static final String TABLE = "kono_mh_ship_type";
+    public static final String CLASSCOMMENT = "我的项目";
     public static final String TIME = "2020年04月08日";
     public static final String AGILE = new Date().getTime() + "";
     // 路径信息，分开路径方便聚合工程项目，微服务项目
     //包名
-    public static final String pre_package = "com.zsl.upmall";
+    public static final String pre_package = "com.kono.mh";
     public static final String ENTITY_URL = pre_package + ".entity";
     public static final String DAO_URL = pre_package + ".mapper";
     public static final String XML_URL = pre_package + ".mapper.xml";
@@ -39,7 +39,7 @@ public class MyGenerator {
     public static final String SERVICE_IMPL_URL = pre_package + ".service.impl";
     public static final String CONTROLLER_URL = pre_package + ".web";
     //是否是Swagger配置
-    public static final String IS_SWAGGER = "false";
+    public static final String IS_SWAGGER = "true";
 		
 	public static void main(String[] args) {
 		BasisInfo bi = new BasisInfo(PROJECT, AUTHOR, VERSION, URL, NAME, PASS, DATABASE, TIME, AGILE,pre_package, ENTITY_URL,
