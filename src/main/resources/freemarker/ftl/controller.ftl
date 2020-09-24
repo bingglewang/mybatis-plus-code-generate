@@ -90,6 +90,24 @@ public class ${entityName}Controller {
         }
 
 
+        /**
+        * 批量删除项目
+        * @param idsParam
+        * @return
+        */
+        @PostMapping("deleteBatch")
+        @ApiOperation(value = "批量删除项目",notes = "批量删除项目")
+        public CommonResult deleteBatch(@RequestBody IdsParam idsParam){
+            if(CollectionUtils.isEmpty(idsParam.getIds())){
+                return CommonResult.failed("删除项为空");
+            }
+            Boolean result  = baseService.removeByIds(idsParam.getIds());
+            if(result){
+                return CommonResult.success("删除成功");
+            }
+            return CommonResult.failed("删除失败");
+        }
+
 
        /**
        * @explain 添加
@@ -102,7 +120,7 @@ public class ${entityName}Controller {
        <#if isSwagger=="true" >
        @ApiOperation(value = "添加", notes = "作者：${author}")
        </#if>
-       public CommonResult insert(${entityName} entity){
+       public CommonResult insert(@RequestBody ${entityName} entity){
            if (null!=entity) {
                 boolean rsg = baseService.save(entity);
            if (rsg) {
@@ -128,7 +146,7 @@ public class ${entityName}Controller {
       <#if isSwagger=="true" >
       @ApiOperation(value = "修改", notes = "作者：${author}")
       </#if>
-      public CommonResult update(${entityName} entity){
+      public CommonResult update(@RequestBody ${entityName} entity){
           if (null!=entity) {
                 boolean rsg = baseService.updateById(entity);
           if (rsg) {
@@ -153,13 +171,13 @@ public class ${entityName}Controller {
        <#if isSwagger=="true" >
        @ApiOperation(value = "分页查询", notes = "分页查询返回[IPage<${entityName}>],作者：${author}")
        </#if>
-       public CommonResult<IPage<${entityName}>> getPages(PageParam<${entityName}> param,${entityName} entity){
+       public CommonResult<CommonPage<${entityName}>> getPages(PageParam<${entityName}> param,${entityName} entity){
            Page<${entityName}> page=new Page<${entityName}>(param.getPageNum(),param.getPageSize());
            QueryWrapper<${entityName}> queryWrapper =new QueryWrapper<${entityName}>();
            queryWrapper.setEntity(entity);
            //分页数据
            IPage<${entityName}> pageData=baseService.page(page, queryWrapper);
 
-           return CommonResult.success(pageData);
+           return CommonResult.success(CommonPage.restPage(pageData));
        }
 }

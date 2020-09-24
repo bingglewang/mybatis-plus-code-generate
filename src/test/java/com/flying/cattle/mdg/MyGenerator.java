@@ -25,8 +25,8 @@ public class MyGenerator {
     public static final String DATABASE = "martitime-hydrometeorology";
     // 类信息：类名、对象名（一般是【类名】的首字母小些）、类说明、时间
     //public static final String CLASSNAME = "friend";
-    public static final String TABLE = "kono_mh_ship_type";
-    public static final String CLASSCOMMENT = "我的项目";
+    public static final String TABLE = "kono_mh_address";
+    public static final String CLASSCOMMENT = "我的地址";
     public static final String TIME = "2020年04月08日";
     public static final String AGILE = new Date().getTime() + "";
     // 路径信息，分开路径方便聚合工程项目，微服务项目
